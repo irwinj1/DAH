@@ -48,18 +48,7 @@ input[type="email"] {
     display: inline-block;
     font-size: 16px;
   }
-  .card{
-    width: 100%;
-    box-shadow: 1px 1px 15px rgb(95, 95, 95);  
-    margin-top: 10px;
-  }
-  .card h2
-  {
-    font-size: 22px;
-    margin: 0;
-    padding: 10px;
-  }
-  .card p,
+  
   .card span{
     margin: 0;
     padding: 10px;

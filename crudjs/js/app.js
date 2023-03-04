@@ -19,15 +19,20 @@ function mostrarContenido(data){
     data.forEach((estudiante)=>{
         const card = document.createElement('div')
         card.classList.add('card')
+        const cardBody = document.createElement('div')
+        cardBody.classList.add('card-body')
         const h2 = document.createElement('h2')
         h2.textContent = estudiante.nombre+' '+estudiante.apellido 
+        h2.classList.add('card-title')
         const p = document.createElement('p')
         p.textContent = estudiante.email
+        p.classList.add('card-text')
         const span = document.createElement('span')
         span.textContent = estudiante.telefono
-        card.appendChild(h2)
-        card.appendChild(p)
-        card.appendChild(span)
+        cardBody.appendChild(h2)
+        cardBody.appendChild(p)
+        cardBody.appendChild(span)
+        card.appendChild(cardBody)
         contenidoListas.appendChild(card)
         
     })
@@ -88,7 +93,7 @@ function capturarEstudiante(event){
         document.querySelector('#tel').value = ''
           Swal.fire('Estudiante guardado!', '', 'success')
         } else if (result.isDenied) {
-          Swal.fire('No se agregego al estudiante', '', 'info')
+          Swal.fire('No se agregego al estudiante', '', 'error')
         }
       })
   
