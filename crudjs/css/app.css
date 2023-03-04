@@ -1,0 +1,76 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.encabezado{
+    background-color: rgb(27, 27, 56);
+    color: aliceblue;
+    height: 50px;
+    width: 100%;
+}
+.encabezado nav{
+    font-size: 25px;
+    margin-left: 10px;
+    padding: 10px;
+}
+.contenido{
+    width: 95%;
+    margin: auto;
+    display: flex;
+    margin-top: 15px;
+}
+.formulario{
+    width: 35%; 
+    box-shadow: 5px 5px 25px rgba(255, 255, 255,0.5);   
+}
+.lista{
+    width: 65%;
+    margin-left: 10px;
+}
+label{
+    font-size: 25px;
+    font-weight: bold;
+}
+input[type=text],
+input[type="email"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+  button{
+    background-color: #314067; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .card{
+    width: 100%;
+    box-shadow: 1px 1px 15px rgb(95, 95, 95);  
+    margin-top: 10px;
+  }
+  .card h2
+  {
+    font-size: 22px;
+    margin: 0;
+    padding: 10px;
+  }
+  .card p,
+  .card span{
+    margin: 0;
+    padding: 10px;
+    
+  }
+  .card span{
+    padding-bottom: 5px !important;
+  }
+  .contedoLista{
+    box-shadow: 10px 10px 10px black;
+  }
+  .invalid{
+    border-color: red;
+  }
