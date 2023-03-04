@@ -16,17 +16,10 @@ body{
 .contenido{
     width: 95%;
     margin: auto;
-    display: flex;
+    
     margin-top: 15px;
 }
-.formulario{
-    width: 35%; 
-    box-shadow: 5px 5px 25px rgba(255, 255, 255,0.5);   
-}
-.lista{
-    width: 65%;
-    margin-left: 10px;
-}
+
 label{
     font-size: 25px;
     font-weight: bold;
