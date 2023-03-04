@@ -19,33 +19,40 @@ function Listeners() {
 //metodos o funcionalidad
 function mostrarContenido(data){
     limpiarHtml()
-    data.forEach((estudiante)=>{
-        const card = document.createElement('div')
-        card.classList.add('card')
-        const cardBody = document.createElement('div')
-        cardBody.classList.add('card-body')
-        const h2 = document.createElement('h2')
-        h2.textContent = estudiante.nombre+' '+estudiante.apellido 
-        h2.classList.add('card-title')
-        const p = document.createElement('p')
-        p.textContent = estudiante.email
-        p.classList.add('card-text')
-        const span = document.createElement('span')
-        span.textContent = estudiante.telefono
-        const eliminar = document.createElement('p')
-        eliminar.textContent = 'x'
-        eliminar.onclick = ()=>{
-            elimarEstudiante(estudiante.id);
-        }
-        eliminar.classList.add('eliminar')
-        cardBody.appendChild(h2)
-        cardBody.appendChild(p)
-        cardBody.appendChild(span)
-        cardBody.appendChild(eliminar)
-        card.appendChild(cardBody)
-        contenidoListas.appendChild(card)
-        
-    })
+    if (data) {
+        data.forEach((estudiante)=>{
+            const card = document.createElement('div')
+            card.classList.add('card')
+            const cardBody = document.createElement('div')
+            cardBody.classList.add('card-body')
+            const h2 = document.createElement('h2')
+            h2.textContent = estudiante.nombre+' '+estudiante.apellido 
+            h2.classList.add('card-title')
+            const p = document.createElement('p')
+            p.textContent = estudiante.email
+            p.classList.add('card-text')
+            const span = document.createElement('span')
+            span.textContent = estudiante.telefono
+            const eliminar = document.createElement('p')
+            eliminar.textContent = 'x'
+            eliminar.onclick = ()=>{
+                elimarEstudiante(estudiante.id);
+            }
+            eliminar.classList.add('eliminar')
+            cardBody.appendChild(h2)
+            cardBody.appendChild(p)
+            cardBody.appendChild(span)
+            cardBody.appendChild(eliminar)
+            card.appendChild(cardBody)
+            contenidoListas.appendChild(card)
+            
+        })
+    }else{
+        const nodata = document.createElement('p')
+        nodata.textContent='No tienes estudiantes registrados'
+        contenidoListas.appendChild(nodata)
+    }
+    
 
  
 }
@@ -95,7 +102,7 @@ function capturarEstudiante(event){
       }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            estudiantes = [...estudiantes, objEstudiante]
+            estudiantes.push(objEstudiante)
             mostrarContenido(estudiantes)
             localStorage.setItem('estudiantes', JSON.stringify(estudiantes))
             //console.log(estudiantes);
