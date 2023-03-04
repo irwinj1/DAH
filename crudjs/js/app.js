@@ -11,7 +11,10 @@ Listeners()
 
 function Listeners() {
     formulario.addEventListener('submit',capturarEstudiante)
-    document.addEventListener('DOMContentLoaded',mostrarContenido(estudiantes))
+    document.addEventListener('DOMContentLoaded',()=>{
+       estudiantes = JSON.parse(localStorage.getItem('estudiantes'))
+       mostrarContenido(estudiantes)
+    })
 }
 //metodos o funcionalidad
 function mostrarContenido(data){
@@ -29,9 +32,16 @@ function mostrarContenido(data){
         p.classList.add('card-text')
         const span = document.createElement('span')
         span.textContent = estudiante.telefono
+        const eliminar = document.createElement('p')
+        eliminar.textContent = 'x'
+        eliminar.onclick = ()=>{
+            elimarEstudiante(estudiante.id);
+        }
+        eliminar.classList.add('eliminar')
         cardBody.appendChild(h2)
         cardBody.appendChild(p)
         cardBody.appendChild(span)
+        cardBody.appendChild(eliminar)
         card.appendChild(cardBody)
         contenidoListas.appendChild(card)
         
@@ -51,7 +61,7 @@ function capturarEstudiante(event){
         alert('Los campos son obligatorios')
         return
     }
-    console.log(tel.length);
+   
     for (let index = 0; index < tel.length; index += 1) {
         if (/^[a-zA-Z]+$/.test(tel[index]) || tel.length >8) {
             document.querySelector('#tel').classList.add('invalid')
@@ -70,6 +80,7 @@ function capturarEstudiante(event){
     document.querySelector('#tel').classList.remove('invalid')
     document.querySelector('#email').classList.remove('invalid')
     const objEstudiante ={
+        id: Date.now(),
         nombre: nombre,
         apellido:apellido,
         email: email,
@@ -85,21 +96,28 @@ function capturarEstudiante(event){
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             estudiantes = [...estudiantes, objEstudiante]
-        mostrarContenido(estudiantes)
-        console.log(estudiantes);
-        document.querySelector('#nombre').value = ''
-        document.querySelector('#apellido').value = ''
-        document.querySelector('#email').value = ''
-        document.querySelector('#tel').value = ''
-          Swal.fire('Estudiante guardado!', '', 'success')
-        } else if (result.isDenied) {
-          Swal.fire('No se agregego al estudiante', '', 'error')
-        }
-      })
+            mostrarContenido(estudiantes)
+            localStorage.setItem('estudiantes', JSON.stringify(estudiantes))
+            //console.log(estudiantes);
+            document.querySelector('#nombre').value = ''
+            document.querySelector('#apellido').value = ''
+            document.querySelector('#email').value = ''
+            document.querySelector('#tel').value = ''
+            Swal.fire('Estudiante guardado!', '', 'success')
+            } else if (result.isDenied) {
+            Swal.fire('No se agregego al estudiante', '', 'error')
+            }
+        })
   
     
 }
 
+function elimarEstudiante(id){
+    //console.log(id);
+    estudiantes = estudiantes.filter(estudiante=> estudiante.id !== id)
+    mostrarContenido(estudiantes)
+
+}
 function limpiarHtml(){
     while(contenidoListas.firstChild){
         contenidoListas.removeChild(contenidoListas.firstChild)
